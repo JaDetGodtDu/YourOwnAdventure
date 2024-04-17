@@ -1,12 +1,29 @@
 const SERVER_URL = 'http://localhost:8080/api/v1/';
 
+const startButton = document.getElementById('start-button');
+const startDiv = document.getElementById('adventure-start-div');
+const answerDiv = document.getElementById('chat-answer');
 
-document.getElementById('form-adventure').addEventListener('submit', getAdventure);
-document.getElementById('form-adventure2').addEventListener('submit', getAdventureWithRateLimit);
-document.getElementById('form-answer').addEventListener('submit', getInfo);
+let data = {
+    history:"",
+    action:""
+}
 
-async function initPrompt() {
-    const URL = `${SERVER_URL}story`
+document.getElementById('chat-answer').addEventListener('submit', submitAnswer);
+
+window.addEventListener('load', startAdventure);
+
+function startAdventure(){
+    answerDiv.style.display = 'none';
+    startDiv.style.display = 'block';
+    startButton.addEventListener('click', initPrompt);
+}
+
+async function initPrompt(){
+    startDiv.style.display = 'none';
+    answerDiv.style.display = 'block';
+
+    const URL = `${SERVER_URL}adventure`
     const spinner = document.getElementById('spinner1');
 
     try {
@@ -28,14 +45,14 @@ async function initPrompt() {
         spinner.style.display = "none";
     }
 }
-async function getAdventure(event) {
-    // Prevent the form from reloading the page.
+async function submitAnswer(){
     event.preventDefault();
-
-    const URL = `${SERVER_URL}adventure?about= + ${document.getElementById('about').value}`
+    const URL = `${SERVER_URL}adventure`
     const spinner = document.getElementById('spinner1');
-    const result = document.getElementById('result');
-    result.style.color = "black";
+    const chat = document.getElementById('chat-history');
+
+    data.action = document.getElementById('action').value;
+    console.log(data)
     try {
         spinner.style.display = "block";
         const res = await fetch(URL, {
@@ -47,7 +64,7 @@ async function getAdventure(event) {
         }).then(handleHttpErrors)
 
         chat.insertAdjacentHTML('beforeend', `<li class="list-group-item chat-action"></li>`);
-        typeWriter(event.target.action.value, chat.lastChild);
+        typeWriter(data.action, chat.lastChild);
 
         chat.insertAdjacentHTML('beforeend', `<li class="list-group-item chat-response"></li>`);
         typeWriter(res.answer, chat.lastChild);
@@ -56,81 +73,21 @@ async function getAdventure(event) {
         console.log(error);
     } finally {
         spinner.style.display = "none";
-        event.target.action.value = "";
+        document.getElementById('action').value = "";
     }
-    // try {
-    //     spinner.style.display = "block";
-    //     const response = await fetch(URL).then(handleHttpErrors)
-    //     document.getElementById('result').innerText = response.answer;
-    // } catch (e) {
-    //     result.style.color = "red";
-    //     result.innerText = e.message;
-    // }
-    // finally {
-    //     spinner.style.display = "none";
-    // }
+
 }
-
-/* async function getAdventureWithRateLimit(event) {
-    // Prevent the form from reloading the page.
-    event.preventDefault();
-
-    const URL = `${SERVER_URL}adventurelimited?about= + ${document.getElementById('about2').value}`
-    const result2 = document.getElementById('result2');
-    const spinner2 = document.getElementById('spinner2');
-    result2.style.color = "black";
-    result2.innerText = ""
-    try {
-        spinner2.style.display = "block";
-        const response = await fetch(URL).then(handleHttpErrors)
-        document.getElementById('result2').innerText = response.answer;
-    } catch (e) {
-        result2.style.color = "red";
-        result2.innerText = e.message;
-    } finally {
-        spinner2.style.display = "none";
-    }
-}
-
-async function getInfo(event) {
-    // Prevent the form from reloading the page.
-    event.preventDefault();
-
-    const URL = `${SERVER_URL}owninfo?question= + ${document.getElementById('the-adventure').value}`
-    const spinner = document.getElementById('spinner3');
-    const result3 = document.getElementById('result3');
-    result3.innerText = ""
-    result3.style.color = "black";
-    try {
-        spinner.style.display = "block";
-        const reply = await fetch(URL).then(handleHttpErrors)
-        document.getElementById('result3').innerHTML = convertToLink(reply.answer)
-    } catch (e) {
-        result3.style.color = "red";
-        result3.innerText = e.message;
-    } finally {
-        spinner.style.display = "none";
-    }
-
-    function convertToLink(str) {
-        const urlRegex = /(https?:\/\/[^\s]+)/g;
-        return str.replace(urlRegex, function(match) {
-            if (match.endsWith('.')) {
-                match = match.slice(0, -1); // Remove the trailing dot
-            }
-            return `<a href="${match}" target="_blank">${match}</a>`;
-        });
-    }
-}*/
-
 function typeWriter(text, element) {
     let i = 0;
     function type() {
         element.scrollIntoView({ behavior: 'smooth', block: 'end' });
         if (i < text.length) {
+            if (!isNaN(text.charAt(i)) && text.charAt(i) !== " ") {
+                element.innerHTML += "<br>";
+            }
             element.innerHTML += text.charAt(i);
             i++;
-            setTimeout(type, 25);
+            setTimeout(type, 12.5);
         }
     }
     type();

@@ -1,9 +1,28 @@
-.result {
-    font-size: large;
-    font-style: italic;
-    color: darkblue;
+h2{
+    text-align: center;
+    margin-top: 25px;
 }
 
-label {
-    font-weight: bold;
+#adventure-start-div{
+    text-align: center;
+    margin-top: 100px;
+}
+
+.spinner-border{
+    align-content: center;
+}
+.chat-history{
+    height: 400px;
+    overflow-y: scroll;
+    padding: 50px 100px 50px 100px;
+    margin: 50px 100px 0px 100px;
+    border: solid 3px;
+    border-color: black;
+}
+
+.chat-answer{
+    background-color: #f1f0f0;
+    padding: 25px 100px 25px 100px;
+    margin: 25px 100px 25px 100px;
+    border: solid 1px black;
 }

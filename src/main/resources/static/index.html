@@ -15,100 +15,29 @@
 </head>
 
 <body>
-<h2>OpenAI API Demo</h2>
-<h3>Your Own Adventure</h3>
+<h2>Choose your own adventure</h2>
+<div id="adventure-start-div">
+    <p>Click there to start your adventure!</p>
+    <button id="start-button" class="btn btn-primary">Start</button>
+</div>
 
-<div class="card m-3">
-    <div class="card-body">
-        <h5 class="card-title">Get Joke (simple)</h5>
-        <form id="form-adventure" class="container">
+<div id="chat-history" class="chat-history"></div>
 
-            <div class="row">
-                <p class="card-text">The simplest possible example, requesting the API for a joke, given a
-                    topic.</p>
-                <label for="about">Topic</label> <input type="text" id="about" class="result"
-                                                        placeholder="Enter topic for an adventure">
-            </div>
-            <div class="row mt-3">
-                <div class="column text-end">
-                    <button type="submit" class="btn btn-primary" id="btn-get-adventure">Get Joke</button>
-                </div>
-            </div>
-        </form>
-        <div id="spinner1" class="spinner-border text-success" role="status"
-             style="margin-left:1em;border-radius: 50%;display:none;">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-        <p id="result" class="result"></p>
+<div id="spinner1" class="spinner-border text-success" role="status" style="margin-left:1em;border-radius: 50%;display:none;">
+    <span class="visually-hidden">Loading...</span>
+</div>
 
+<form id="chat-answer" class="chat-answer">
+<div>
+    <div class="row">
+        <input type="text" id="action">
     </div>
 </div>
-
-
-<div class="card m-3">
-    <div class="card-body">
-        <h5 class="card-title">Get Joke (with IP-rate limiting)</h5>
-
-        <form id="form-adventure2" class="container">
-
-            <div class="row">
-                <p class="card-text">Same as above, but with IP-rate limitation.</p>
-                <label for="about2">Topic</label> <input type="text" id="about2"
-                                                         placeholder="Enter topic for an adventure">
-            </div>
-            <div class="row mt-3">
-                <div class="column text-end">
-                    <button class="btn btn-primary" id="btn-get-joke2">Get Joke (with IP-rate limiting)</button>
-                </div>
-            </div>
-        </form>
-
-        <div id="spinner2" class="spinner-border text-success" role="status"
-             style="margin-left:1em;border-radius: 50%;display:none;">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-
-        <p id="result2" class="result"></p>
+    <div class="col text-end">
+        <button class="btn btn-primary" id="btn-action">Submit</button>
     </div>
-</div>
+</form>
 
-<div class="card m-3">
-    <div class="card-body">
-        <h5 class="card-title">Demonstrates how to feed own info into the API-request</h5>
-
-        <form id="form-answer">
-            <div class="row">
-                <div class="column mb-3">
-
-                    <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal"
-                            data-bs-target="#owninfoModal">
-                        How to use this example!
-                    </button>
-                </div>
-            </div>
-            <div class="container">
-
-                <div class="row">
-                    <label for="the-adventure">Question </label><textarea cols="100" rows="3" id="the-adventure"
-                                                                         placeholder="Enter a question related to this ChatGPT example"></textarea>
-                </div>
-
-                <div class="row">
-                    <div class="column text-end mt-3">
-                        <button type="submit" class="btn btn-primary" id="btn-get-answer">Get answer</button>
-                    </div>
-                </div>
-                <div id="spinner3" class="spinner-border-lg spinner-border text-success" role="status"
-                     style="margin:1em;border-radius: 50%;display:none;width: 3rem; height: 3rem;">
-                    <span class=" visually-hidden">Loading...</span>
-                </div>
-
-            </div>
-        </form>
-        <p id="result3" class="result"></p>
-
-    </div>
-</div>
-</div>
 </body>
+
 </html>
