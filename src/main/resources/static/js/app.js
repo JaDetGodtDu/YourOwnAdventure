@@ -58,17 +58,17 @@ async function getAdventure(event) {
         spinner.style.display = "none";
         event.target.action.value = "";
     }
-    try {
-        spinner.style.display = "block";
-        const response = await fetch(URL).then(handleHttpErrors)
-        document.getElementById('result').innerText = response.answer;
-    } catch (e) {
-        result.style.color = "red";
-        result.innerText = e.message;
-    }
-    finally {
-        spinner.style.display = "none";
-    }
+    // try {
+    //     spinner.style.display = "block";
+    //     const response = await fetch(URL).then(handleHttpErrors)
+    //     document.getElementById('result').innerText = response.answer;
+    // } catch (e) {
+    //     result.style.color = "red";
+    //     result.innerText = e.message;
+    // }
+    // finally {
+    //     spinner.style.display = "none";
+    // }
 }
 
 /* async function getAdventureWithRateLimit(event) {
