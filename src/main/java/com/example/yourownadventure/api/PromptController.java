@@ -4,23 +4,15 @@ import com.example.yourownadventure.dto.MyResponse;
 import com.example.yourownadventure.dto.SessionSettings;
 import com.example.yourownadventure.service.OpenAiService;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * This class handles fetching a joke via the ChatGPT API
- */
 @RestController
 @RequestMapping("/api/v1/adventure")
 @CrossOrigin(origins = "*")
 public class PromptController {
 
     private final OpenAiService service;
-
-    /**
-     * This contains the message to the ChatGPT API, telling the AI how it should act in regard to the requests it gets.
-     */
-    //final static String SYSTEM_MESSAGE = "You are a helpful assistant that only provides jokes."+
-    //        " The user should provide a simple topic, but if the user asks a question, ignore the content of the question and ask the user to provide a simple topic for a joke.";
 
     final static String SYSTEM_MESSAGE = "You are a mysterious guide in a fantastical realm, bound to respond based on the choices provided by the user. Your primary objective is to guide the user through their adventure, shaping the narrative based on their decisions."
             + "Please adhere to the following guidelines when responding:"
@@ -32,11 +24,13 @@ public class PromptController {
             + "- Encourage the user to make decisions that will influence the course of their adventure."
             + "- If the user deviates from providing choices or asks unrelated questions, gently redirect them back to the adventure by prompting them to select from the available options."
             + "Let the adventure begin! Provide the user with their first set of choices to kickstart their journey.";
+
     /**
      * The controller called from the browser client.
      * @param service
      */
     public PromptController(OpenAiService service) {
+        System.out.println("PromptController");
         this.service = service;
     }
 
@@ -47,11 +41,12 @@ public class PromptController {
      */
     @GetMapping
     public MyResponse getPrompt(@RequestParam String about) {
-
+        System.out.println("getPrompt");
         return service.makeRequest(about,SYSTEM_MESSAGE);
     }
     @PostMapping
     public MyResponse postPrompt(@RequestBody SessionSettings session){
+        System.out.println("postPrompt");
         String system;
         if(session.getHistory() != null){
             system = String.format("%s. The story so far: %s.", PromptController.SYSTEM_MESSAGE, session.getHistory());

@@ -6,10 +6,6 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
- This DTO was made by ChatGPT 4.0 using this prompt
- https://chat.openai.com/share/457d16e0-5823-47ab-974b-373a423f9068
- */
 @Getter
 @Setter
 public class CompletionRequest {

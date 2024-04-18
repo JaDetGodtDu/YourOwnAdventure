@@ -33,6 +33,7 @@ public class OwnInfoController {
      * @param openAiService
      */
     public OwnInfoController(OpenAiService openAiService) {
+        System.out.println("OwnInfoController");
         this.openAiService = openAiService;
     }
 
@@ -43,6 +44,7 @@ public class OwnInfoController {
      */
     @GetMapping
     public MyResponse getInfo(@RequestParam String question){
+        System.out.println("getInfo");
         return openAiService.makeRequest(question,SYSTEM_MESSAGE);
     }
 }

@@ -25,9 +25,6 @@ public class OpenAiService {
     @Value("${app.api-key}")
     private String API_KEY;
 
-    //See here for a decent explanation of the parameters send to the API via the requestBody
-    //https://platform.openai.com/docs/api-reference/completions/create
-
     @Value("${app.url}")
     public String URL;
 
@@ -54,7 +51,6 @@ public class OpenAiService {
     public OpenAiService() {
         this.client = WebClient.create();
     }
-    //Use this constructor for testing, to inject a mock client
     public OpenAiService(WebClient client) {
         this.client = client;
     }
