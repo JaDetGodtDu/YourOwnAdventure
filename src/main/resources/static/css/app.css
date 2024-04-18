@@ -1,17 +1,44 @@
-h2{
+@font-face{
+    font-family: 'AdventureFont';
+    src: url('../font/Middleearth-ao6m.ttf') format('opentype');
+}
+body {
+    /*background-color: #4d4139;*/
+    background-color: #4d4139;
+    opacity: 0.8;
+    background-image: radial-gradient(circle at center center, #d9d3ce, #4d4139), repeating-radial-gradient(circle at center center, #d9d3ce, #d9d3ce, 28px, transparent 56px, transparent 28px);
+    background-blend-mode: multiply;
+    font-family: 'AdventureFont';
+}
+
+h1 {
     text-align: center;
     margin-top: 25px;
+    color: #fcbc4c;
 }
-
-#adventure-start-div{
+h2{
     text-align: center;
-    margin-top: 100px;
+    margin-bottom: 25px;
+    color: #fcbc4c;
+    font-size: 20px;
 }
 
-.spinner-border{
+p {
+    color: #fcbc4c;
+}
+
+#adventure-start-div {
+    text-align: center;
+    margin: 50px 25px 25px 25px;
+}
+
+.spinner-border {
     align-content: center;
 }
-.chat-history{
+
+.chat-history {
+    font-size:20px;
+    background-color: #d9d3ce;
     height: 400px;
     overflow-y: scroll;
     padding: 50px 100px 50px 100px;
@@ -20,9 +47,30 @@ h2{
     border-color: black;
 }
 
-.chat-answer{
-    background-color: #f1f0f0;
+.chat-answer {
+    background-color: #d9d3ce;
     padding: 25px 100px 25px 100px;
-    margin: 25px 100px 25px 100px;
+    margin: 25px 100px 0px 100px;
     border: solid 1px black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.button-wrapper{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    background-color: #fcbc4c;
+    color: #4d4139;
+    border: solid 1px black;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.btn:hover{
+    background-color: #997331;
 }

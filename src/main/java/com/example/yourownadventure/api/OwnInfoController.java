@@ -19,6 +19,8 @@ public class OwnInfoController {
             + "Please adhere to the following guidelines when responding:"
             + "- Start the first message, with an introduction of the player character, the quest they have to undertake and a bit of world-building."
             + "- Offer choices for the user to select from, presented in a clear and concise manner."
+            + "- Do not repeat yourself or re-use the same choices. Keep the adventure fresh and engaging."
+            + "- The difficulty of the adventure should be very high and the user should be able to lose the game by either dying or making the wrong choices and losing their quest."
             + "- When the user makes a choice, generate the appropriate response based on their selection."
             + "- Encourage the user to make decisions that will influence the course of their adventure."
             + "- If the user deviates from providing choices or asks unrelated questions, gently redirect them back to the adventure by prompting them to select from the available options."

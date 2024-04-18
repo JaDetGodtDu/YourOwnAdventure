@@ -3,6 +3,7 @@ const SERVER_URL = 'http://localhost:8080/api/v1/';
 const startButton = document.getElementById('start-button');
 const startDiv = document.getElementById('adventure-start-div');
 const answerDiv = document.getElementById('chat-answer');
+const historyDiv = document.getElementById('chat-history');
 
 let data = {
     history:"",
@@ -15,12 +16,14 @@ window.addEventListener('load', startAdventure);
 
 function startAdventure(){
     answerDiv.style.display = 'none';
+    historyDiv.style.display = 'none';
     startDiv.style.display = 'block';
     startButton.addEventListener('click', initPrompt);
 }
 
 async function initPrompt(){
     startDiv.style.display = 'none';
+    historyDiv.style.display = 'block';
     answerDiv.style.display = 'block';
 
     const URL = `${SERVER_URL}adventure`
