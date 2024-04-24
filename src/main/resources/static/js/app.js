@@ -1,5 +1,7 @@
 const SERVER_URL = 'http://localhost:8080/api/v1/';
 
+// TO DO: Make functionality that renders the appropriate amount of buttons based on the response from OpenAI API
+
 const startButton = document.getElementById('start-button');
 const startDiv = document.getElementById('adventure-start-div');
 const answerDiv = document.getElementById('chat-answer');
@@ -51,6 +53,7 @@ async function initPrompt(){
 async function submitAnswer(){
     event.preventDefault();
     const URL = `${SERVER_URL}adventure`
+    // TO DO: Make spinner a transparent overlay that covers the entire chat window
     const spinner = document.getElementById('spinner1');
     const chat = document.getElementById('chat-history');
 
@@ -80,6 +83,8 @@ async function submitAnswer(){
     }
 
 }
+// TO DO: Make it so the typing effect can be stopped by clicking on the text and displaying the full text
+// TO DO: Make it so the scrolling effect scrolls dynamically during the typing effect
 function typeWriter(text, element) {
     let i = 0;
     function type() {
